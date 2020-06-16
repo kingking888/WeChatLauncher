@@ -240,32 +240,3 @@ Exit0:
 
 	return ret;
 }
-
-int MultiOpenWeChat(wchar_t* wechat_path, DWORD& pid, HANDLE& pHandle)
-{
-	STARTUPINFO  si;
-	PROCESS_INFORMATION pi;
-	ZeroMemory(&si, sizeof(si));
-	si.cb = sizeof(si);
-	ZeroMemory(&pi, sizeof(pi));
-	PatchWeChat();
-	if (!CreateProcess(NULL, 
-		wechat_path,
-		NULL, 
-		NULL, 
-		FALSE, 
-		0, 
-		NULL, 
-		NULL, 
-		&si, 
-		&pi)
-		) 
-	{
-		return GetLastError();
-	}
-	pid = pi.dwProcessId;
-	pHandle = pi.hProcess;
-	CloseHandle(pi.hThread);
-	//CloseHandle(pi.hProcess);
-	return 0;
-}

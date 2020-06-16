@@ -207,4 +207,4 @@ typedef NTSTATUS
 	OUT PULONG ReturnLength OPTIONAL
 	);
 
-int MultiOpenWeChat(wchar_t* wechat_path, DWORD& pid, HANDLE& pHandle);
+int PatchWeChat();
